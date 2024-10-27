@@ -21,6 +21,9 @@ def index(request):
     'num_authors': num_authors})
 class BookListView(generic.ListView):
     model = Book
+    paginate_by = 3
 class BookDetailView(generic.DetailView):
     model = Book
-    paginate_by = 3
+class AuthorListView(generic.ListView): 
+   model = Author 
+   paginate_by = 4   
