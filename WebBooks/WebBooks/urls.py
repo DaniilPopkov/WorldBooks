@@ -23,6 +23,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path("",views.index, name='home'),
+    path('authors_add/', views.authors_add, name='authors_add'), 
     path('admin/', admin.site.urls),
     path('',views.index,name='index'),
     re_path(r'^books/$', views.BookListView.as_view(), name='books'),
@@ -30,5 +31,16 @@ urlpatterns = [
     re_path(r'^authors/$', views.AuthorListView.as_view(), name='authors'), 
 ]
 urlpatterns += [ 
-path('accounts/', include('django.contrib.auth.urls')), 
+    path('accounts/', include('django.contrib.auth.urls')), 
+    path('edit1/<int:id>/', views.edit1, name='edit1'), 
+    path('create/', views.create, name='create'), 
+    path('delete/<int:id>/', views.delete, name='delete'), 
+] 
+urlpatterns += [ 
+    re_path(r'^mybooks/$', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'), 
+] 
+urlpatterns += [ 
+    re_path(r'^book/create/$', views.BookCreate.as_view(), name='book_create'), 
+    re_path(r'^book/update/(?P<pk>\d+)$', views.BookUpdate.as_view(), name='book_update'), 
+    re_path(r'^book/delete/(?P<pk>\d+)$', views.BookDelete.as_view(), name='book_delete'),
 ] 
