@@ -34,7 +34,12 @@ urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')), 
     path('edit1/<int:id>/', views.edit1, name='edit1'), 
     path('create/', views.create, name='create'), 
-    path('delete/<int:id>/', views.delete, name='delete'), 
+    path('delete/<int:id>/', views.delete, name='delete'),
+    # boot_start...
+    path('start1/', views.boot_start_page, name='start1'),
+    path('color_bg/', views.boot_start_page1, name='color_bg'),
+    path('color_text/', views.boot_start_page2, name='color_text'),
+    path('color_text_bg/', views.boot_start_page3, name='color_text_bg'),
 ] 
 urlpatterns += [ 
     re_path(r'^mybooks/$', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'), 

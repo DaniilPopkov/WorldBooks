@@ -96,3 +96,13 @@ class BookUpdate(UpdateView):
 class BookDelete(DeleteView): 
    model = Book 
    success_url = reverse_lazy('books')
+# Boot_start
+def boot_start_page(request):
+   return render(request, "start1.html")
+def boot_start_page1(request):
+   return render(request, "color_bg.html")
+def boot_start_page2(request):
+   return render(request, "color_text.html")
+def boot_start_page3(request):
+   return render(request, "color_text_bg.html")
+# end
