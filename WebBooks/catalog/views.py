@@ -105,4 +105,32 @@ def boot_start_page2(request):
    return render(request, "color_text.html")
 def boot_start_page3(request):
    return render(request, "color_text_bg.html")
+def space_start_page(request):
+   return render(request, "space_1.html")
+def space_start_page1(request):
+   return render(request, "space_2.html")
+def space_start_page2(request):
+   return render(request, "space_3.html")
+def aligment_start_page(request):
+   return render(request, "aligment_1.html")
+def aligment_start_page1(request):
+   return render(request, "aligment_2.html")
+def border_start_page(request):
+   return render(request, "border_1.html")
+def border_start_page1(request):
+   return render(request, "border_2.html")
+def border_color_page(request):
+   return render(request, "border_color.html")
+def border_radius_page(request):
+   return render(request, "border_radius.html")
+def border_radius_page1(request):
+   return render(request, "border_radius_1.html")
+def start_start_page(request):
+   return render(request, "start.html")
+def start_start_page1(request):
+   return render(request, "start_1.html")
+def table_start_page(request):
+   return render(request, "table.html")
+def table_start_page1(request):
+   return render(request, "table_1.html")
 # end
