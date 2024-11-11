@@ -22,10 +22,12 @@ from django.urls import path, include
 
 
 urlpatterns = [
-    path("",views.index, name='home'),
+    path('',views.index),
+    path('index_1',views.index_1, name='index_1'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
     path('authors_add/', views.authors_add, name='authors_add'), 
     path('admin/', admin.site.urls),
-    path('',views.index,name='index'),
     re_path(r'^books/$', views.BookListView.as_view(), name='books'),
     re_path(r'^book/(?P<pk>\d+)$', views.BookDetailView.as_view(), name='book-detail'),
     re_path(r'^authors/$', views.AuthorListView.as_view(), name='authors'), 
@@ -54,6 +56,8 @@ urlpatterns += [
     path('start_1/', views.start_start_page1, name='start_1'),
     path('table/',views.table_start_page, name='table'),
     path('table_1/',views.table_start_page1, name='table_1'),
+    
+
 ] 
 urlpatterns += [ 
     re_path(r'^mybooks/$', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'), 

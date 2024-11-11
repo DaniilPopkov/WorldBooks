@@ -10,8 +10,17 @@ from django.urls import reverse_lazy
 from .models import Book 
 
 # Create your views here.
+def index_1(request):
+ return render(request, "catalog/index_1.html")
+def about(request):
+ return render(request, "catalog/about.html")
+def contact(request):
+ return render(request, "catalog/contact.html")
+ 
+
+
 def index(request):
- # Генерация "количеств" некоторых главных объектов
+#  # Генерация "количеств" некоторых главных объектов
     num_books = Book.objects.all().count()
     num_instances = BookInstance.objects.all().count()
  # Доступные книги (статус = 'На складе')
