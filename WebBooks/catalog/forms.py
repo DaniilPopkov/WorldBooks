@@ -21,5 +21,4 @@ class BookModelForm(ModelForm):
         help_texts = {' summary ': ('Не более 1000 символов'), }
 
 class UserForm(forms.Form): 
-    name = forms.CharField(label="Имя клиента", widget=forms.TextInput(attrs={"class": "myfield"})) 
-    age = forms.IntegerField(label="Возраст клиента", widget=forms.NumberInput(attrs={"class": "myfield"})) 
+    email = forms.EmailField(label="Электронный адрес",help_text="Обязательный символ - @")
