@@ -21,4 +21,5 @@ class BookModelForm(ModelForm):
         help_texts = {' summary ': ('Не более 1000 символов'), }
 
 class UserForm(forms.Form): 
-    uuid_text = forms.UUIDField(label="Введите UUID", help_text="Формат xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+    name = forms.CharField(label="Имя клиента", widget=forms.TextInput(attrs={"class": "myfield"})) 
+    age = forms.IntegerField(label="Возраст клиента", widget=forms.NumberInput(attrs={"class": "myfield"})) 

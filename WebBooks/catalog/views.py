@@ -138,21 +138,29 @@ def table_start_page(request):
    return render(request, "table.html")
 def table_start_page1(request):
    return render(request, "table_1.html")
-def my_form(request):
-    if request.method == 'POST':
-        form = UserForm(request.POST, request.FILES)
-        if form.is_valid():
-            return redirect('my_form/')
-    else:
-        form = UserForm()
-    return render(request, "firstapp/my_form.html", {'form': form})
+
 # end
+# def index(request): 
+#    my_kv = ['I квартал ->', 'II квартал ->', 'III квартал->', 'IV квартал->'] 
+#    my_month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'] 
+#    context = {'my_month': my_month, 'my_kv': my_kv} 
+#    return render(request, "firstapp/index.html", context)
 def index(request): 
-   my_kv = ['I квартал ->', 'II квартал ->', 'III квартал->', 'IV квартал->'] 
-   my_month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'] 
-   context = {'my_month': my_month, 'my_kv': my_kv} 
-   return render(request, "firstapp/index.html", context)  
+   my_text = 'Изучаем формы Django' 
+   context = {'my_text': my_text} 
+   return render(request, "firstapp/index.html", context) 
 def about(request): 
-   return render(request, "firstapp/about.html")
+   return render(request, "firstapp/about.html") 
 def contact(request): 
-   return render(request, "firstapp/contact.html")
+   return render(request, "firstapp/contact.html") 
+def my_form(request): 
+   if request.method == "POST": 
+      userform = UserForm(request.POST) 
+      if userform.is_valid(): 
+         name = request.POST.get("name")  # получить значение поля Имя 
+         age = request.POST.get("age")  # получить значение поля Возраст 
+         output = "<h2>Пользователь</h2><h3>Имя - {0}," " Возраст – {1} </h3 >".format(name, age) 
+      return HttpResponse(output) 
+   userform = UserForm() 
+   return render(request, "firstapp/my_form.html", {"form": userform})
+
