@@ -19,3 +19,6 @@ class BookModelForm(ModelForm):
         fields = ['title', 'genre', 'language', 'author', 'summary', 'isbn']
         verbose_name = {' summary ': ('Аннотация книги'), } 
         help_texts = {' summary ': ('Не более 1000 символов'), }
+
+class UserForm(forms.Form): 
+    uuid_text = forms.UUIDField(label="Введите UUID", help_text="Формат xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")

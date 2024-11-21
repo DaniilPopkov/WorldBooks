@@ -8,6 +8,8 @@ from .forms import AuthorsForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView 
 from django.urls import reverse_lazy 
 from .models import Book 
+from .forms import UserForm
+from django.shortcuts import redirect
 
 # Create your views here.
 def index_1(request):
@@ -142,4 +144,12 @@ def table_start_page(request):
    return render(request, "table.html")
 def table_start_page1(request):
    return render(request, "table_1.html")
+def my_form(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST, request.FILES)
+        if form.is_valid():
+            return redirect('my_form/')
+    else:
+        form = UserForm()
+    return render(request, "firstapp/my_form.html", {'form': form})
 # end

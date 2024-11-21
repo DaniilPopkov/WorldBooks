@@ -26,6 +26,7 @@ urlpatterns = [
     path('index_1',views.index_1, name='index_1'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
+    path('my_form/', views.my_form,name='my_form'),
     path('authors_add/', views.authors_add, name='authors_add'), 
     path('admin/', admin.site.urls),
     re_path(r'^books/$', views.BookListView.as_view(), name='books'),
@@ -56,6 +57,7 @@ urlpatterns += [
     path('start_1/', views.start_start_page1, name='start_1'),
     path('table/',views.table_start_page, name='table'),
     path('table_1/',views.table_start_page1, name='table_1'),
+   
     
 
 ] 
