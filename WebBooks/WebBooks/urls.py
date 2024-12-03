@@ -25,7 +25,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('',views.index, name='index'),
-    path('authors_add/', views.authors_add, name='authors_add'), 
     path('admin/', admin.site.urls),
     path('books/', views.BookListView.as_view(), name='books-list'),
     path('books/<int:pk>/', views.BookDetailView.as_view(), name='book-detail'),
@@ -36,11 +35,11 @@ urlpatterns = [
     path('authors/<int:pk>/', views.AuthorDetailView.as_view(),name='authors-detail'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
+    path('edit_authors/', views.edit_authors, name='edit_authors'),
+    path('authors_add/', views.add_author, name='authors_add'),
 ]
 urlpatterns += [ 
     path('accounts/', include('django.contrib.auth.urls')), 
-    path('edit1/<int:id>/', views.edit1, name='edit1'), 
-    path('create/', views.create, name='create'), 
     path('delete/<int:id>/', views.delete, name='delete'),
     # path('start1/', views.start1, name='start1'),
 #  path('color_bg/', views.color_bg, name='color-bg'),

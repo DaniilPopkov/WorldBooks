@@ -28,6 +28,16 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 ALLOWED_HOSTS = ['*']
+# # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# ''' это реальная отправка через smtp.gmail '''
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# # EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = True # для отправки с gmail
+# EMAIL_PORT = 465
+# EMAIL_HOST_USER = "seredadanil944gmail.com" # от кого
+# EMAIL_HOST_PASSWORD = "pkdvqvuvgqkmwmlh" # пароль почты отправителя
+# # Application definition
 
 
 # Application definition
