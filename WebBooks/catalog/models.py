@@ -78,7 +78,7 @@ class Book(models.Model):
                                on_delete=models.CASCADE,
                                help_text="Выберите язык книги",
                                verbose_name="Язык книги", null=True)
-  publisher = models.ForeignKey('Publisher',
+  publisher = models.ForeignKey(Publisher,
                                 on_delete=models.CASCADE,
                                 help_text="Выберите издательство",
                                 verbose_name="Издательство", null=True)

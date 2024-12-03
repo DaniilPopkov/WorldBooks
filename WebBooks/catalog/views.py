@@ -50,12 +50,15 @@ def index(request):
 class BookListView(generic.ListView):
     model = Book
     context_object_name = 'books'
+    paginate_by = 3
 class BookDetailView(generic.DetailView):
     model = Book
     context_object_name = 'book'
 class AuthorListView(generic.ListView): 
    model = Author 
-   paginate_by = 4   
+   paginate_by = 4 
+class AuthorDetailView(generic.DetailView):
+   model = Author  
 class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView): 
    """ 
    Универсальный класс представления списка книг, 
@@ -115,13 +118,13 @@ class BookDelete(DeleteView):
    success_url = reverse_lazy('books')
 # Boot_start
 # def start1(request):
-#   return render(request, "start1.html")
+#   return render(request, "boob/start1.html")
 # def color_bg(request):
-#     return render(request,"color_bg.html")
+#     return render(request,"boob/color_bg.html")
 # def color_text(request):
-#     return render(request,'color_text.html')
+#     return render(request,'boob/color_text.html')
 # def color_text_bg(request):
-#     return render(request, 'color_text_bg.html')
+#     return render(request, 'boob/color_text_bg.html')
 # def space_1(request):
 #   return render(request, 'boob/space_1.html')
 # def space_2(request):
@@ -149,23 +152,23 @@ class BookDelete(DeleteView):
 # def table_1(request):
 #     return render(request, "boob/table_1.html")
 # def index(request):
-#  return render(request, "firstapp/index.html")
+#  return render(request, "app/index.html")
 
 # end
 # def index(request): 
 #    my_kv = ['I квартал ->', 'II квартал ->', 'III квартал->', 'IV квартал->'] 
 #    my_month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'] 
 #    context = {'my_month': my_month, 'my_kv': my_kv} 
-#    return render(request, "firstapp/index.html", context)
+#    return render(request, "app/index.html", context)
 # def index(request):
 #  my_text = 'Изучаем модели Django'
 #  people_kol = Person.object_person.count()
 #  context = {'my_text': my_text, "people_kol": people_kol}
-#  return render(request, "firstapp/index.html", context)
+#  return render(request, "app/index.html", context)
 # def about(request):
-#  return render(request, "firstapp/about.html")
+#  return render(request, "app/about.html")
 # def contact(request):
-#  return render(request, "firstapp/contact.html")
+#  return render(request, "app/contact.html")
 
 # def my_form(request): 
 #  if request.method == "POST": 
@@ -204,7 +207,7 @@ class BookDelete(DeleteView):
 #  my_img = Image.obj_img.all()
 #  form = ImageForm()
 #  context = {'my_text': my_text, "my_img": my_img, "form": form}
-#  return render(request, 'firstapp/form_up_img.html', context)
+#  return render(request, 'app/form_up_img.html', context)
 # def delete_img(request, id):
 #  try:
 #   img = Image.obj_img.get(id=id)
@@ -221,7 +224,7 @@ class BookDelete(DeleteView):
 #  form = FileForm()
 #  file_obj = File.objects.all()
 #  context = {'my_text': my_text, "file_obj": file_obj, "form": form}
-#  return render(request, 'firstapp/form_up_pdf.html', context)
+#  return render(request, 'app/form_up_pdf.html', context)
 # def delete_pdf(request, id):
 #  try:
 #   pdf = File.objects.get(id=id)
@@ -239,7 +242,7 @@ class BookDelete(DeleteView):
 #  form = VideoForm()
 #  file_obj = VideoFile.obj_video.all()
 #  context = {'my_text': my_text, "file_obj": file_obj, "form": form}
-#  return render(request, 'firstapp/form_up_video.html', context)
+#  return render(request, 'app/form_up_video.html', context)
 # def delete_video(request, id):
 #  try:
 #   video = VideoFile.obj_video.get(id=id)
@@ -257,7 +260,7 @@ class BookDelete(DeleteView):
 #  form = AudioForm()
 #  file_obj = AudioFile.obj_audio.all()
 #  context = {'my_text': my_text, "file_obj": file_obj, "form": form}
-#  return render(request, 'firstapp/form_up_audio.html', context)
+#  return render(request, 'app/form_up_audio.html', context)
 # def delete_audio(request, id):
 #  try:
 #   audio = AudioFile.obj_audio.get(id=id)
@@ -265,3 +268,28 @@ class BookDelete(DeleteView):
 #   return redirect('form_up_audio')
 #  except Person.DoesNotExist:
 #   return HttpResponseNotFound("<h2>Объект не найден</h2>")
+def about(request):
+   text_head = 'Сведения о компании'
+   name = 'ООО "Интеллектуальные информационные системы"'
+   rab1 = 'Разработка приложений на основе' \
+   ' систем искусственного интеллекта'
+   rab2 = 'Распознавание объектов дорожной инфраструктуры'
+   rab3 = 'Создание графических АРТ-объектов на основе' \
+   ' систем искусственного интеллекта'
+   rab4 = 'Создание цифровых интерактивных книг, учебных пособий' \
+   ' автоматизированных обучающих систем'
+   context = {'text_head': text_head, 'name': name,
+   'rab1': rab1, 'rab2': rab2,
+   'rab3': rab3, 'rab4': rab4}
+   return render(request, 'catalog/about.html', context)
+def contact(request):
+   text_head = 'Контакты'
+   name = 'ООО "Интеллектуальные информационные системы"'
+   address = 'Москва, ул. Планерная, д.20, к.1'
+   tel = '495-345-45-45'
+   email = 'iis_info@mail.ru'
+   context = {'text_head': text_head,
+   'name': name, 'address': address,
+   'tel': tel,
+   'email': email}
+   return render(request, 'catalog/contact.html', context)

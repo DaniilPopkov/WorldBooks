@@ -27,9 +27,15 @@ urlpatterns = [
     path('',views.index, name='index'),
     path('authors_add/', views.authors_add, name='authors_add'), 
     path('admin/', admin.site.urls),
-    re_path(r'^books/$', views.BookListView.as_view(), name='books'),
+    path('books/', views.BookListView.as_view(), name='books-list'),
     path('books/<int:pk>/', views.BookDetailView.as_view(), name='book-detail'),
-    re_path(r'^authors/$', views.AuthorListView.as_view(), name='authors'), 
+    re_path(r'^books/$', views.BookListView.as_view(), name='books'),
+    re_path(r'^book/(?P<pk>\d+)$', views.BookDetailView.as_view(), name='book-detail'),
+    re_path(r'^authors/$', views.AuthorListView.as_view(), name='authors'),
+    path('authors/', views.AuthorListView.as_view(), name='authors-list'),
+    path('authors/<int:pk>/', views.AuthorDetailView.as_view(),name='authors-detail'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
 ]
 urlpatterns += [ 
     path('accounts/', include('django.contrib.auth.urls')), 
