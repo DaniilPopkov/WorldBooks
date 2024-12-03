@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from .models import Book, Author, BookInstance, Genre
+from django import forms
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import * 
@@ -20,7 +22,10 @@ from .models import VideoFile
 from .forms import VideoForm
 from .models import AudioFile
 from .forms import AudioForm
-
+from .models import Author
+from .forms import Form_edit_author
+from .models import Author
+from .models import Book
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from .forms import Form_add_author
@@ -78,10 +83,7 @@ class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
 def get_queryset(self):
       return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
 # получение данных из БД и загрузка шаблона authors_add.html 
-def edit_authors(request):
-   author = Author.objects.all() 
-   context = {'author': author}
-   return render(request, "catalog/edit_authors.html", context)
+
 def add_author(request):
     if request.method == 'POST':
         form = Form_add_author(request.POST, request.FILES)
@@ -99,24 +101,40 @@ def add_author(request):
                 photo=photo
             )
             obj.save()
-            return redirect('authors_list')  # Перенаправление на список авторов
+            return redirect('authors_list')
         else:
-            form = Form_add_author()  # Передача невалидной формы в шаблон
+            form = Form_add_author() 
             return render(request, "catalog/authors_add.html", {'form': form})  # Рендеринг формы
     else:
         form = Form_add_author()
         return render(request, "catalog/authors_add.html", {'form': form})
 
-# def create(request): 
-#    if request.method == "POST": 
-#       author = Author() 
-#       author.first_name = request.POST.get("first_name") 
-#       author.last_name = request.POST.get("last_name") 
-#       author.date_of_birth = request.POST.get("date_of_birth") 
-#       author.date_of_death = request.POST.get("date_of_death") 
-#       author.save() 
-#       return HttpResponseRedirect("/authors_add/")
-# удаление авторов из БД 
+def edit_author(request, id):
+  author = Author.objects.get(id=id)
+  if request.method == 'POST':
+    form = Form_edit_author(request.POST, request.FILES, instance=author)
+    if form.is_valid():
+      form.save()
+      return redirect('authors_list')
+    else:
+      return render(request, "catalog/edit_authors.html", {'form': form})
+  else:
+    form = Form_edit_author(instance=author)
+    return render(request, "catalog/edit_authors.html", {'form': form})
+def edit_authors(request):
+ author = Author.objects.all()
+ context = {'author': author}
+ return render(request, "catalog/edit_authors.html", context)
+def create(request):
+ if request.method == "POST":
+  author = Author()
+  author.first_name = request.POST.get("first_name")
+  author.last_name = request.POST.get("last_name")
+  author.date_of_birth = request.POST.get("date_of_birth")
+  # author.date_of_death = request.POST.get("date_of_death")
+  author.save()
+  return HttpResponseRedirect("/authors_add/")
+
 def delete(request, id): 
    try: 
       author = Author.objects.get(id=id) 
@@ -124,21 +142,25 @@ def delete(request, id):
       return HttpResponseRedirect("/edit_authors/")
    except:
       return HttpResponseNotFound("<h2>Автор не найден</h2>") 
+def edit_books(request):
+ book = Book.objects.all()
+ context = {'book': book}
+ return render(request, "catalog/edit_books.html", context)
 # изменение данных в БД 
 
 
 class BookCreate(CreateView): 
    model = Book 
    fields = '__all__' 
-   success_url = reverse_lazy('books') 
+   success_url = reverse_lazy('edit_books') 
 
 class BookUpdate(UpdateView): 
    model = Book 
    fields = '__all__' 
-   success_url = reverse_lazy('books') 
+   success_url = reverse_lazy('edit_books') 
 class BookDelete(DeleteView): 
    model = Book 
-   success_url = reverse_lazy('books')
+   success_url = reverse_lazy('edit_books')
 # Boot_start
 # def start1(request):
 #   return render(request, "boob/start1.html")

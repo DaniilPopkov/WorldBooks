@@ -7,6 +7,7 @@ from .models import Image
 from .models import File 
 from .models import VideoFile
 from .models import AudioFile
+from .models import Author
 
 class AuthorsForm(forms.Form): 
     first_name = forms.CharField(label="Имя автора") 
@@ -58,3 +59,12 @@ class Form_add_author(forms.Form):
  about = forms.CharField(label="Сведения об авторе",
  widget=forms.Textarea)
  photo = forms.ImageField(label="Фото автора")
+
+class Form_edit_author(forms.ModelForm):
+  class Meta:
+    model = Author
+    fields = '__all__'
+class BookModelForm(forms.ModelForm):
+  class Meta:
+    model = Book
+    fields = '__all__'
