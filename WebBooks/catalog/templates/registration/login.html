@@ -15,19 +15,30 @@
 10 
 <form method="post" action="{% url 'login' %}"> 
 {% csrf_token %} 
-<table> 
-<tr> 
+<div class="row my-2 text-center">
+    <div class="col-4">
+    <table class="table table-bordered my-2 text-start">
+    <tr>
 <td>{{ form.username.label_tag }}</td> 
 <td>{{ form.username }}</td> 
-</tr> 
-<tr> 
+</tr>
+<tr>
 <td>{{ form.password.label_tag }}</td> 
 <td>{{ form.password }}</td> 
-</tr> 
-</table> 
-<input type="submit" value="Вход" /> 
-<input type="hidden" name="next" value="{{ next }}" /> 
+</tr>
+</table>
+</div>
+<div class="col-8"></div>
+</div>
+<div class="row my-2 text-start">
+<div class="col-4">
+<input type="submit" value="Вход" />
+<input type="hidden" name="next" value="{{ next }}" />
+{# Предполагается, что вы настроили #}
+{# представление password_reset в своем URLconf#}
+<p><a href="{% url 'password_reset' %}"> Утерян пароль?</a></p>
+</div>
+</div>
+<div class="col-8"></div>
 </form> 
-{# Предполагается, что вы настроили представление password_reset в своем URLconf#} 
-<p><a href="{% url 'password_reset' %}"> Утерян пароль?</a></p> 
 {% endblock %}
