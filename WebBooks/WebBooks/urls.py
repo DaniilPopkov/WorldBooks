@@ -19,6 +19,8 @@ from django.urls import path
 from catalog import views
 from django.urls import re_path
 from django.urls import path, include 
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -34,7 +36,6 @@ urlpatterns += [
     path('edit1/<int:id>/', views.edit1, name='edit1'), 
     path('create/', views.create, name='create'), 
     path('delete/<int:id>/', views.delete, name='delete'),
-    # boot_start...
     path('start1/', views.boot_start_page, name='start1'),
     path('color_bg/', views.boot_start_page1, name='color_bg'),
     path('color_text/', views.boot_start_page2, name='color_text'),
@@ -56,10 +57,16 @@ urlpatterns += [
     path('', views.index, name='index'), 
     path('about/', views.about, name='about'), 
     path('contact/', views.contact, name='contact'), 
-    path('my_form/', views.my_form,name='my_form'),
+    path('my_form/', views.my_form, name='my_form'),
+    path('my_form/edit_form/<int:id>/', views.edit_form, name='edit_form'),
+    path('my_form/delete/<int:id>/', views.delete),
+    path('form_up_img/', views.form_up_img, name='form_up_img'),
+    path('form_up_img/delete_img/<int:id>/', views.delete_img),
+]
+if settings.DEBUG:
+ urlpatterns += static(settings.MEDIA_URL,
+ document_root=settings.MEDIA_ROOT)
     
-
-] 
 urlpatterns += [ 
     re_path(r'^mybooks/$', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'), 
 ] 

@@ -1,11 +1,15 @@
-{% extends "firstapp/base.html" %} 
-{% block title %}Главная страница{% endblock title %} 
-{% block header %}Это главная страница сайта - index.html.{% endblock header %} 
-{% block content%} 
-<div class="col text-center text-dark">
+{% extends "firstapp/base.html" %}
+{% block title %}Главная страница{% endblock title %}
+{% block header %}Это главная страница сайта - index.html.{% endblock header %}
+<div class="container-fluid my-2">
+    <div class="row">
+    <div class="col text-center">
     <div>{{ my_text }}</div>
-</div> 
-</div> 
-</div> 
-</div> 
-{% endblock content %} 
+    {% if people_kol > 0 %}
+    <h5>
+    Количество введенных пользователей - {{ people_kol }}
+    </h5>
+    {% endif %}
+    </div>
+    </div>
+    </div>

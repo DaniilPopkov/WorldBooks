@@ -4,8 +4,8 @@
  {% load static %}
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/static/css/bootstrap.min.css" >
+ <script defer src="/static/js/bootstrap.bundle.min.js"></script>
  <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
@@ -24,6 +24,7 @@
  <h6>
  <a href="{% url 'index' %}">Главная страница</a>
  <a href="{% url 'my_form' %}">Форма</a>
+ <a href="{% url 'form_up_img' %}">Изображения</a>
  <a href="{% url 'about' %}">О компании</a>
  <a href="{% url 'contact' %}">Контакты</a>
  </h6>
