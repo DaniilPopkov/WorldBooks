@@ -59,4 +59,5 @@ django-admin startproject "name project" ->  creating a new project
 python manage.py runserver -> starting django server, Quit the server with CTRL-BREAK
 python manage.py migrate -> runs migrations on the database
 ```
-python manage.py createsuperuser  
+python manage.py createsuperuser 
+ pip install django-bootstrap-v5 
